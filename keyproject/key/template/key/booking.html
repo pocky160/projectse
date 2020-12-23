@@ -1,0 +1,45 @@
+{% extends 'key/base.html' %} 
+{% block content %}
+
+<!-- Header -->
+<header class="w3-container w3-white w3-center" style="padding:200px 30px">
+    <p class="w3-xlarge">ระบบจองห้อง</p>
+    <div class="w3-content w3-container w3-padding-64" id="about">
+        <div class="w3-row">
+            <div class="w3-col m6 w3-center w3-padding-large">
+                <img src="/media/logo.png">
+            </div>
+            <!-- Hide this text on small devices -->
+            <div class="w3-col m6 w3-hide-small w3-padding-large">
+                <h3>รายละเอียดกิจกรรม</h3>
+                <input class="form-control w3-input w3-border w3-margin-bottom" placeholder="ชื่อกิจกรรม" type="text" id="text" name="booking_name" required>
+                <input class="form-control w3-border w3-margin-bottom" placeholder="ประเภท" name="act_name" list="type_act">
+                <datalist id="type_act">
+                    {% for i in Act %}
+                        <option value= {{ i.NameAct }}>
+                    {% endfor %}
+                </datalist>
+                <input class="form-control w3-input w3-border w3-margin-bottom" placeholder="จำนวนผู้เข้าร่วม (คน)" type="text" id="number" name="people" required>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">เวลาเริ่ม</span>
+                    <input type="time" class="form-control" name="starttime" required>
+
+                    <span class="input-group-text" id="basic-addon1">เวลาสิ้นสุด</span>
+                    <input type="time" class="form-control" name="stoptime" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">เลือกวันที่</span>
+                    <input type="date" class="form-control" name="datebook" required>
+                </div>
+                <input class="form-control w3-border w3-margin-bottom" placeholder="เลือกห้องที่จะทำการจอง" name="build" list="ls-build" required>
+                <datalist id="ls-build">
+                    {% for i in Build %}
+                        <option value={{ i.NameBuilding }}>
+                    {% endfor %}
+                </datalist>
+                <a href="{% url 'home-page' %}" class="btn btn-primary ">Booking</a>
+            </div>
+        </div>
+</header>
+
+{% endblock %}
